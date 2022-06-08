@@ -7,6 +7,7 @@
   font-family: 'Karla', sans-serif;
   position: relative;
   color: var(--text-color);
+  user-select: none;
 }
 
 .app::after {
