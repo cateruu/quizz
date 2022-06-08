@@ -1,0 +1,32 @@
+@import url(_variables.css);
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-main);
+  font-family: 'Karla', sans-serif;
+  position: relative;
+  color: var(--text-color);
+}
+
+.app::after {
+  content: '';
+  position: absolute;
+  left: -230px;
+  bottom: 200px;
+  border-radius: 50%;
+  background-color: #deebf8;
+  width: 300px;
+  height: 500px;
+}
+
+.app::before {
+  content: '';
+  position: absolute;
+  right: -300px;
+  top: -300px;
+  border-radius: 50%;
+  background-color: #fffad1;
+  width: 500px;
+  height: 500px;
+}
