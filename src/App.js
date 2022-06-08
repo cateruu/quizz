@@ -13,6 +13,8 @@ const App = () => {
 
   return (
     <div className={classes.app}>
+      <div className={classes.topBlob}></div>
+      <div className={classes.bottomBlob}></div>
       {!gameStarted && <Landing handleClick={startGame} />}
       {gameStarted && <Quiz />}
     </div>

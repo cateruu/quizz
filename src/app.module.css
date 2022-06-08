@@ -10,7 +10,7 @@
   user-select: none;
 }
 
-.app::after {
+.topBlob {
   content: '';
   position: absolute;
   left: -230px;
@@ -21,7 +21,7 @@
   height: 500px;
 }
 
-.app::before {
+.bottomBlob {
   content: '';
   position: absolute;
   right: -300px;

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import Question from './Question';
+import classes from './quiz.module.css';
 
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
@@ -30,7 +31,9 @@ const Quiz = () => {
     );
   });
 
-  return <section>{questionElements}</section>;
+  console.log(questions);
+
+  return <section className={classes.container}>{questionElements}</section>;
 };
 
 export default Quiz;
