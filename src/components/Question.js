@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import classes from './question.module.css';
+import Answer from './Answer';
 
 const Question = (props) => {
   const shuffle = (array) => {
@@ -24,12 +26,38 @@ const Question = (props) => {
   };
 
   const answerArray = shuffle(props.answers);
-  const answerElements = answerArray.map((answer) => {
+
+  const selectAnswer = (id) => {
+    setAnswers((prevAnswer) =>
+      prevAnswer.map((answer) => {
+        if (answer.id === id) {
+          answer = { ...answer, isSelected: true };
+        } else {
+          answer = { ...answer, isSelected: false };
+        }
+
+        return answer;
+      })
+    );
+  };
+
+  const [answers, setAnswers] = useState(
+    answerArray.map((answer) => {
+      return {
+        id: nanoid(),
+        text: answer,
+        isSelected: false,
+      };
+    })
+  );
+
+  const answerElements = answers.map((answer) => {
     return (
-      <div
-        key={nanoid()}
-        className={classes.answer}
-        dangerouslySetInnerHTML={{ __html: answer }}
+      <Answer
+        key={answer.id}
+        text={answer.text}
+        isSelected={answer.isSelected}
+        handleClick={() => selectAnswer(answer.id)}
       />
     );
   });
