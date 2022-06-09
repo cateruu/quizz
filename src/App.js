@@ -23,9 +23,7 @@ const App = () => {
     };
 
     getQuestions();
-  }, []);
-
-  // console.log(questions);
+  }, [gameStarted]);
 
   return (
     <div className={classes.app}>

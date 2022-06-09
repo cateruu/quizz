@@ -41,6 +41,7 @@ const Question = (props) => {
       prevAnswer.map((answer) => {
         if (answer.id === id) {
           answer = { ...answer, isSelected: true };
+          props.getSelectedAnswer(answer.text, props.id);
         } else {
           answer = { ...answer, isSelected: false };
         }
