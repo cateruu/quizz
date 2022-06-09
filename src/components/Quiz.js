@@ -4,6 +4,10 @@ import { nanoid } from 'nanoid';
 import Question from './Question';
 
 const Quiz = (props) => {
+  const checkAnswers = () => {
+    console.log('check');
+  };
+
   const questionElements = props.questions.map((question) => {
     return (
       <Question
@@ -17,7 +21,9 @@ const Quiz = (props) => {
   return (
     <section className={classes.quiz}>
       {questionElements}
-      <button className={classes.check}>Check answers</button>
+      <button className={classes.check} onClick={checkAnswers}>
+        Check answers
+      </button>
     </section>
   );
 };

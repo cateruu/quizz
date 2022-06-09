@@ -26,6 +26,15 @@ const Question = (props) => {
   };
 
   const answerArray = shuffle(props.answers);
+  const [answers, setAnswers] = useState(
+    answerArray.map((answer) => {
+      return {
+        id: nanoid(),
+        text: answer,
+        isSelected: false,
+      };
+    })
+  );
 
   const selectAnswer = (id) => {
     setAnswers((prevAnswer) =>
@@ -40,16 +49,6 @@ const Question = (props) => {
       })
     );
   };
-
-  const [answers, setAnswers] = useState(
-    answerArray.map((answer) => {
-      return {
-        id: nanoid(),
-        text: answer,
-        isSelected: false,
-      };
-    })
-  );
 
   const answerElements = answers.map((answer) => {
     return (
