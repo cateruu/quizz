@@ -1,0 +1,22 @@
+.question {
+  border-bottom: 1px solid #dbdef0;
+}
+
+.answers {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.answer {
+  padding: 10px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.answer:hover {
+  background-color: var(--background-selected);
+}

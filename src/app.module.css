@@ -11,7 +11,6 @@
 }
 
 .topBlob {
-  content: '';
   position: absolute;
   left: -230px;
   bottom: 200px;
@@ -22,7 +21,6 @@
 }
 
 .bottomBlob {
-  content: '';
   position: absolute;
   right: -300px;
   top: -300px;
