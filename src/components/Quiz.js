@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import classes from './quiz.module.css';
 import Question from './Question';
@@ -28,6 +29,15 @@ const Quiz = (props) => {
     }
   };
 
+  const [answered, setAnswered] = useState(
+    props.questions.map((question) => {
+      return {
+        question: question.question,
+        correct: false,
+      };
+    })
+  );
+
   const checkAnswers = () => {
     const correctAnswers = props.questions.map((question) => {
       return {
@@ -38,14 +48,27 @@ const Quiz = (props) => {
 
     for (let answer of selectedAnswers) {
       for (let correct of correctAnswers) {
-        if (answer.question === correct.question) {
-          answer.answer === correct.answer
-            ? console.log('dobre')
-            : console.log('zle');
+        if (answer.question !== correct.question) continue;
+
+        if (correct.answer === answer.answer) {
+          setAnswered((prevAnswered) =>
+            prevAnswered.map((check) => {
+              if (answer.question === check.question) {
+                return {
+                  ...check,
+                  correct: true,
+                };
+              }
+
+              return check;
+            })
+          );
         }
       }
     }
   };
+
+  console.log(answered);
 
   const questionElements = props.questions.map((question) => {
     return (
