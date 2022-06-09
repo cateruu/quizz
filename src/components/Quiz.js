@@ -5,35 +5,46 @@ import Question from './Question';
 
 const Quiz = (props) => {
   let selectedAnswers = [];
-
-  const checkIfAnswerFromSameQuestion = (id) => {
+  const checkIfAnswerFromSameQuestion = (question) => {
     for (let answer of selectedAnswers) {
-      if (answer.id === id) {
+      if (answer.question === question) {
         return true;
       }
     }
 
     return false;
   };
-
-  const getSelectedAnswer = (text, id) => {
-    const check = checkIfAnswerFromSameQuestion(id);
-
-    if (check) {
+  const getSelectedAnswer = (text, question) => {
+    if (checkIfAnswerFromSameQuestion(question)) {
       selectedAnswers = selectedAnswers.map((answer) => {
-        if (answer.id === id) {
-          answer.text = text;
+        if (answer.question === question) {
+          answer.answer = text;
         }
 
         return answer;
       });
     } else {
-      selectedAnswers.push({ id: id, text: text });
+      selectedAnswers.push({ question: question, answer: text });
     }
   };
 
   const checkAnswers = () => {
-    console.log(selectedAnswers);
+    const correctAnswers = props.questions.map((question) => {
+      return {
+        question: question.question,
+        answer: question.correct_answer,
+      };
+    });
+
+    for (let answer of selectedAnswers) {
+      for (let correct of correctAnswers) {
+        if (answer.question === correct.question) {
+          answer.answer === correct.answer
+            ? console.log('dobre')
+            : console.log('zle');
+        }
+      }
+    }
   };
 
   const questionElements = props.questions.map((question) => {

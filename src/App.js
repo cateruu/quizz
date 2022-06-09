@@ -25,6 +25,8 @@ const App = () => {
     getQuestions();
   }, [gameStarted]);
 
+  console.log(questions);
+
   return (
     <div className={classes.app}>
       <div className={classes.topBlob}></div>
