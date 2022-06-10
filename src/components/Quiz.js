@@ -7,6 +7,20 @@ import PlayAgain from './PlayAgain';
 import Check from './Check';
 
 const Quiz = (props) => {
+  const checkAnswers = () => {
+    props.setCheckingAnswers(true);
+    for (let question of props.allQuestions) {
+      for (let answer of props.selectedAnswers) {
+        if (question.question === answer.question) {
+          if (question.correct === answer.selectedAnswer) {
+            props.setScore((prevScore) => ++prevScore);
+            answer.correct = true;
+          }
+        }
+      }
+    }
+  };
+
   const questionElements = props.allQuestions.map((question) => {
     return (
       <Question
@@ -26,7 +40,7 @@ const Quiz = (props) => {
       {props.checkingState ? (
         <PlayAgain score={props.score} handleClick={props.startGame} />
       ) : (
-        <Check handleClick={props.checkAnswers} />
+        <Check handleClick={checkAnswers} />
       )}
     </section>
   );

@@ -27,20 +27,6 @@ const App = () => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [score, setScore] = useState(0);
 
-  const checkAnswers = () => {
-    setCheckingAnswers(true);
-    for (let question of allQuestions) {
-      for (let answer of selectedAnswers) {
-        if (question.question === answer.question) {
-          if (question.correct === answer.selectedAnswer) {
-            setScore((prevScore) => ++prevScore);
-            answer.correct = true;
-          }
-        }
-      }
-    }
-  };
-
   return (
     <div className={classes.app}>
       <div className={classes.topBlob}></div>
@@ -54,8 +40,9 @@ const App = () => {
           setSelectedAnswers={setSelectedAnswers}
           checkingState={checkingAnswers}
           score={score}
+          setScore={setScore}
           startGame={startGame}
-          checkAnswers={checkAnswers}
+          setCheckingAnswers={setCheckingAnswers}
         />
       )}
     </div>

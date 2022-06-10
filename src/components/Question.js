@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './css/question.module.css';
+// Components
 import Answer from './Answer';
 
 const Question = (props) => {
@@ -77,7 +78,10 @@ const Question = (props) => {
 
   return (
     <div className={classes.question}>
-      <h2 dangerouslySetInnerHTML={{ __html: props.question }} />
+      <h2
+        dangerouslySetInnerHTML={{ __html: props.question }}
+        className={classes.header}
+      />
       <div className={classes.answers}>
         {props.checkingState ? checkedAnswerElements : answerElements}
       </div>

@@ -18,6 +18,7 @@
   font-family: 'Inter', sans-serif;
   font-size: 1.6rem;
   margin: 7px;
+  text-align: center;
 }
 
 .button {
@@ -35,4 +36,10 @@
 
 .button:active {
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 700px) {
+  .text {
+    font-size: 1.3rem;
+  }
 }
