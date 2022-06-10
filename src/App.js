@@ -1,11 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import classes from './app.module.css';
+import { getQuestions } from './API';
+// Components
 import Landing from './components/Landing';
 
 const App = () => {
-  const startGame = () => {
-    setGameStarted((prevState) => !prevState);
+  const startGame = async () => {
+    setGameStarted(true);
+
+    const newQuestions = await getQuestions();
+
+    console.log(newQuestions);
   };
 
   const [gameStarted, setGameStarted] = useState(false);
