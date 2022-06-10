@@ -1,5 +1,4 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
 import classes from './css/question.module.css';
 
 const Question = (props) => {
@@ -28,16 +27,11 @@ const Question = (props) => {
         ];
       }
     });
-
-    // props.setSelectedAnswer((prevSelected) => [
-    //   ...prevSelected,
-    //   { question: question, answer: answer },
-    // ]);
   };
   const answerElements = props.answers.map((answer) => {
     return (
       <div
-        key={nanoid()}
+        key={answer}
         dangerouslySetInnerHTML={{ __html: answer }}
         className={classes.answer}
         onClick={() => selectAnswer(props.question, answer)}

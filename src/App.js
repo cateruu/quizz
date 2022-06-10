@@ -9,17 +9,34 @@ import Question from './components/Question';
 
 const App = () => {
   const startGame = async () => {
+    setCheckingAnswers(false);
+    setLoadingQuestions(true);
     setGameStarted(true);
 
     const newQuestions = await getQuestions();
     setAllQuestions(newQuestions);
+    setLoadingQuestions(false);
   };
 
+  const [loadingQuestions, setLoadingQuestions] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  const [checkingAnswers, setCheckingAnswers] = useState(false);
   const [allQuestions, setAllQuestions] = useState([]);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [score, setScore] = useState(0);
 
-  console.log(selectedAnswers);
+  const checkAnswers = () => {
+    setCheckingAnswers(true);
+    for (let question of allQuestions) {
+      for (let answer of selectedAnswers) {
+        if (question.question === answer.question) {
+          if (question.correct === answer.selectedAnswer) {
+            setScore((prevScore) => ++prevScore);
+          }
+        }
+      }
+    }
+  };
 
   const questionElements = allQuestions.map((question) => {
     return (
@@ -38,10 +55,19 @@ const App = () => {
       <div className={classes.topBlob}></div>
       <div className={classes.bottomBlob}></div>
       {!gameStarted && <Landing handleClick={startGame} />}
-      {gameStarted && (
+      {loadingQuestions && (
+        <p className={classes.loading}>Loading questions...</p>
+      )}
+      {gameStarted && !loadingQuestions && (
         <section className={classes.quiz}>
           {questionElements}
-          <button className={classes.button}>Check answers</button>
+          {checkingAnswers ? (
+            <p>{score}</p>
+          ) : (
+            <button className={classes.button} onClick={checkAnswers}>
+              Check answers
+            </button>
+          )}
         </section>
       )}
     </div>
