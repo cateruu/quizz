@@ -49,8 +49,10 @@ const App = () => {
         key={nanoid()}
         question={question.question}
         answers={question.answers}
+        correct={question.correct}
         selectedAnswers={selectedAnswers}
         setSelectedAnswers={setSelectedAnswers}
+        checkingState={checkingAnswers}
       />
     );
   });

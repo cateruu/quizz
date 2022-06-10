@@ -28,3 +28,8 @@
 .selected {
   background-color: var(--background-selected);
 }
+
+.correct {
+  border: none;
+  background-color: var(--background-correct);
+}

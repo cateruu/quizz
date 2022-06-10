@@ -44,10 +44,25 @@ const Question = (props) => {
     );
   });
 
+  const checkedAnswerElements = props.answers.map((answer) => {
+    const style = answer === props.correct ? classes.correct : null;
+
+    return (
+      <div
+        key={answer}
+        dangerouslySetInnerHTML={{ __html: answer }}
+        className={`${classes.answer} ${style}`}
+        onClick={() => selectAnswer(props.question, answer)}
+      />
+    );
+  });
+
   return (
     <div className={classes.question}>
       <h2 dangerouslySetInnerHTML={{ __html: props.question }} />
-      <div className={classes.answers}>{answerElements}</div>
+      <div className={classes.answers}>
+        {props.checkingState ? checkedAnswerElements : answerElements}
+      </div>
     </div>
   );
 };
