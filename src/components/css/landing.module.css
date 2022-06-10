@@ -1,5 +1,3 @@
-@import url(../_variables.css);
-
 .landing {
   display: flex;
   flex-direction: column;

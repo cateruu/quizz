@@ -1,26 +1,44 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import classes from './app.module.css';
+import { useState } from 'react';
 import { getQuestions } from './API';
+import { nanoid } from 'nanoid';
+import classes from './css/app.module.css';
 // Components
 import Landing from './components/Landing';
+import Question from './components/Question';
 
 const App = () => {
   const startGame = async () => {
     setGameStarted(true);
 
     const newQuestions = await getQuestions();
-
-    console.log(newQuestions);
+    setAllQuestions(newQuestions);
   };
 
   const [gameStarted, setGameStarted] = useState(false);
+  const [allQuestions, setAllQuestions] = useState([]);
+
+  const questionElements = allQuestions.map((question) => {
+    return (
+      <Question
+        key={nanoid()}
+        question={question.question}
+        answers={question.answers}
+      />
+    );
+  });
 
   return (
     <div className={classes.app}>
       <div className={classes.topBlob}></div>
       <div className={classes.bottomBlob}></div>
       {!gameStarted && <Landing handleClick={startGame} />}
+      {gameStarted && (
+        <section className={classes.quiz}>
+          {questionElements}{' '}
+          <button className={classes.button}>Check answers</button>
+        </section>
+      )}
     </div>
   );
 };
