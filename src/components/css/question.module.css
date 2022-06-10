@@ -24,3 +24,7 @@
 .answer:hover {
   background-color: var(--background-selected);
 }
+
+.selected {
+  background-color: var(--background-selected);
+}

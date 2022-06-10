@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import classes from './css/question.module.css';
 
 const Question = (props) => {
@@ -24,7 +23,11 @@ const Question = (props) => {
       } else {
         return [
           ...prevSelected,
-          { question: question, selectedAnswer: selectedAnswer },
+          {
+            question: question,
+            selectedAnswer: selectedAnswer,
+            correct: false,
+          },
         ];
       }
     });

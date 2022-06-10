@@ -8,12 +8,14 @@ import Landing from './components/Landing';
 import Question from './components/Question';
 import Check from './components/Check';
 import PlayAgain from './components/PlayAgain';
+import Loading from './components/Loading';
 
 const App = () => {
   const startGame = async () => {
     setCheckingAnswers(false);
     setLoadingQuestions(true);
     setGameStarted(true);
+    setScore(0);
 
     const newQuestions = await getQuestions();
     setAllQuestions(newQuestions);
@@ -34,6 +36,7 @@ const App = () => {
         if (question.question === answer.question) {
           if (question.correct === answer.selectedAnswer) {
             setScore((prevScore) => ++prevScore);
+            answer.correct = true;
           }
         }
       }
@@ -57,9 +60,7 @@ const App = () => {
       <div className={classes.topBlob}></div>
       <div className={classes.bottomBlob}></div>
       {!gameStarted && <Landing handleClick={startGame} />}
-      {loadingQuestions && (
-        <p className={classes.loading}>Loading questions...</p>
-      )}
+      {loadingQuestions && <Loading />}
       {gameStarted && !loadingQuestions && (
         <section className={classes.quiz}>
           {questionElements}
