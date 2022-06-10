@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import classes from './css/question.module.css';
 
 const Question = (props) => {
@@ -28,6 +29,7 @@ const Question = (props) => {
       }
     });
   };
+
   const answerElements = props.answers.map((answer) => {
     return (
       <div

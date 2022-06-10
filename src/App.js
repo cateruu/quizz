@@ -6,6 +6,8 @@ import classes from './css/app.module.css';
 // Components
 import Landing from './components/Landing';
 import Question from './components/Question';
+import Check from './components/Check';
+import PlayAgain from './components/PlayAgain';
 
 const App = () => {
   const startGame = async () => {
@@ -62,11 +64,9 @@ const App = () => {
         <section className={classes.quiz}>
           {questionElements}
           {checkingAnswers ? (
-            <p>{score}</p>
+            <PlayAgain score={score} handleClick={startGame} />
           ) : (
-            <button className={classes.button} onClick={checkAnswers}>
-              Check answers
-            </button>
+            <Check handleClick={checkAnswers} />
           )}
         </section>
       )}
