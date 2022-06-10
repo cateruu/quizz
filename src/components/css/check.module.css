@@ -13,3 +13,10 @@
 .button:active {
   box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
+
+@media screen and (max-width: 400px) {
+  .button {
+    height: 30px;
+    font-size: 0.9rem;
+  }
+}

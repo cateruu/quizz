@@ -9,3 +9,16 @@
   flex-direction: column;
   justify-content: space-around;
 }
+
+@media screen and (min-width: 1300px) {
+  .quiz {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .quiz {
+    width: 95%;
+    height: 98%;
+  }
+}

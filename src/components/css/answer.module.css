@@ -29,3 +29,26 @@
   border: none;
   background-color: var(--background-incorrect);
 }
+
+@media screen and (max-width: 800px) {
+  .answer {
+    padding: 5px 10px;
+    margin-right: 6px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .answer {
+    padding: 4px 10px;
+    font-size: 0.9rem;
+    margin-right: 6px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .answer {
+    padding: 4px 10px;
+    font-size: 0.6rem;
+    margin-right: 6px;
+  }
+}
