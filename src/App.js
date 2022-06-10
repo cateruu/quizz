@@ -1,14 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { getQuestions } from './API';
-import { nanoid } from 'nanoid';
 import classes from './css/app.module.css';
 // Components
 import Landing from './components/Landing';
-import Question from './components/Question';
-import Check from './components/Check';
-import PlayAgain from './components/PlayAgain';
 import Loading from './components/Loading';
+import Quiz from './components/Quiz';
 
 const App = () => {
   const startGame = async () => {
@@ -44,20 +41,6 @@ const App = () => {
     }
   };
 
-  const questionElements = allQuestions.map((question) => {
-    return (
-      <Question
-        key={nanoid()}
-        question={question.question}
-        answers={question.answers}
-        correct={question.correct}
-        selectedAnswers={selectedAnswers}
-        setSelectedAnswers={setSelectedAnswers}
-        checkingState={checkingAnswers}
-      />
-    );
-  });
-
   return (
     <div className={classes.app}>
       <div className={classes.topBlob}></div>
@@ -65,14 +48,15 @@ const App = () => {
       {!gameStarted && <Landing handleClick={startGame} />}
       {loadingQuestions && <Loading />}
       {gameStarted && !loadingQuestions && (
-        <section className={classes.quiz}>
-          {questionElements}
-          {checkingAnswers ? (
-            <PlayAgain score={score} handleClick={startGame} />
-          ) : (
-            <Check handleClick={checkAnswers} />
-          )}
-        </section>
+        <Quiz
+          allQuestions={allQuestions}
+          selectedAnswers={selectedAnswers}
+          setSelectedAnswers={setSelectedAnswers}
+          checkingState={checkingAnswers}
+          score={score}
+          startGame={startGame}
+          checkAnswers={checkAnswers}
+        />
       )}
     </div>
   );
