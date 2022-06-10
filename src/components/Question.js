@@ -45,13 +45,21 @@ const Question = (props) => {
   });
 
   const checkedAnswerElements = props.answers.map((answer) => {
-    const style = answer === props.correct ? classes.correct : null;
+    const correctStyle = answer === props.correct ? classes.correct : '';
+
+    let wrongStyle;
+    for (let selectedAnswer of props.selectedAnswers) {
+      console.log(selectedAnswer.correct);
+      if (selectedAnswer.selectedAnswer === answer && !selectedAnswer.correct) {
+        wrongStyle = classes.wrong;
+      }
+    }
 
     return (
       <div
         key={answer}
         dangerouslySetInnerHTML={{ __html: answer }}
-        className={`${classes.answer} ${style}`}
+        className={`${classes.answer} ${correctStyle} ${wrongStyle}`}
         onClick={() => selectAnswer(props.question, answer)}
       />
     );

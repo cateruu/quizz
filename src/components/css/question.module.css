@@ -33,3 +33,8 @@
   border: none;
   background-color: var(--background-correct);
 }
+
+.wrong {
+  border: none;
+  background-color: var(--background-incorrect);
+}

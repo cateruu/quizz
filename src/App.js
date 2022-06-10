@@ -15,6 +15,7 @@ const App = () => {
     setCheckingAnswers(false);
     setLoadingQuestions(true);
     setGameStarted(true);
+    setSelectedAnswers([]);
     setScore(0);
 
     const newQuestions = await getQuestions();
@@ -42,6 +43,8 @@ const App = () => {
       }
     }
   };
+
+  console.log(allQuestions);
 
   const questionElements = allQuestions.map((question) => {
     return (
