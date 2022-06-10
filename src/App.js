@@ -30,8 +30,6 @@ const App = () => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [score, setScore] = useState(0);
 
-  console.log(selectedAnswers);
-
   const checkAnswers = () => {
     setCheckingAnswers(true);
     for (let question of allQuestions) {

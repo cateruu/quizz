@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
+import React from 'react';
 import classes from './css/question.module.css';
+import Answer from './Answer';
 
 const Question = (props) => {
   const checkIfSameQuestion = (question) => {
@@ -43,31 +43,34 @@ const Question = (props) => {
     }
 
     return (
-      <div
+      <Answer
         key={answer}
-        dangerouslySetInnerHTML={{ __html: answer }}
-        className={`${classes.answer} ${isSelected ? classes.selected : null}`}
-        onClick={() => selectAnswer(props.question, answer)}
+        text={answer}
+        isSelected={isSelected}
+        handleClick={() => selectAnswer(props.question, answer)}
+        checkingState={props.checkingState}
       />
     );
   });
 
   const checkedAnswerElements = props.answers.map((answer) => {
-    const correctStyle = answer === props.correct ? classes.correct : '';
+    const correctStyle = answer === props.correct ? true : false;
 
     let wrongStyle;
     for (let selectedAnswer of props.selectedAnswers) {
       if (selectedAnswer.selectedAnswer === answer && !selectedAnswer.correct) {
-        wrongStyle = classes.wrong;
+        wrongStyle = true;
       }
     }
 
     return (
-      <div
+      <Answer
         key={answer}
-        dangerouslySetInnerHTML={{ __html: answer }}
-        className={`${classes.answer} ${correctStyle} ${wrongStyle}`}
-        onClick={() => selectAnswer(props.question, answer)}
+        text={answer}
+        correct={correctStyle}
+        wrong={wrongStyle}
+        handleClick={() => selectAnswer(props.question, answer)}
+        checkingState={props.checkingState}
       />
     );
   });
