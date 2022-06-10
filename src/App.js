@@ -17,6 +17,9 @@ const App = () => {
 
   const [gameStarted, setGameStarted] = useState(false);
   const [allQuestions, setAllQuestions] = useState([]);
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
+
+  console.log(selectedAnswers);
 
   const questionElements = allQuestions.map((question) => {
     return (
@@ -24,6 +27,8 @@ const App = () => {
         key={nanoid()}
         question={question.question}
         answers={question.answers}
+        selectedAnswers={selectedAnswers}
+        setSelectedAnswers={setSelectedAnswers}
       />
     );
   });
@@ -35,7 +40,7 @@ const App = () => {
       {!gameStarted && <Landing handleClick={startGame} />}
       {gameStarted && (
         <section className={classes.quiz}>
-          {questionElements}{' '}
+          {questionElements}
           <button className={classes.button}>Check answers</button>
         </section>
       )}

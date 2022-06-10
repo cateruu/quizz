@@ -3,12 +3,44 @@ import { nanoid } from 'nanoid';
 import classes from './css/question.module.css';
 
 const Question = (props) => {
+  const checkIfSameQuestion = (question) => {
+    for (let answer of props.selectedAnswers) {
+      if (answer.question === question) return true;
+    }
+
+    return false;
+  };
+
+  const selectAnswer = (question, selectedAnswer) => {
+    props.setSelectedAnswers((prevSelected) => {
+      if (checkIfSameQuestion(question)) {
+        for (let answer of prevSelected) {
+          if (answer.question === question) {
+            answer.selectedAnswer = selectedAnswer;
+          }
+        }
+
+        return [...prevSelected];
+      } else {
+        return [
+          ...prevSelected,
+          { question: question, selectedAnswer: selectedAnswer },
+        ];
+      }
+    });
+
+    // props.setSelectedAnswer((prevSelected) => [
+    //   ...prevSelected,
+    //   { question: question, answer: answer },
+    // ]);
+  };
   const answerElements = props.answers.map((answer) => {
     return (
       <div
         key={nanoid()}
         dangerouslySetInnerHTML={{ __html: answer }}
         className={classes.answer}
+        onClick={() => selectAnswer(props.question, answer)}
       />
     );
   });
