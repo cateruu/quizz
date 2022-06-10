@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
 import classes from './css/question.module.css';
 
 const Question = (props) => {
@@ -34,11 +35,18 @@ const Question = (props) => {
   };
 
   const answerElements = props.answers.map((answer) => {
+    let isSelected;
+    for (let selected of props.selectedAnswers) {
+      if (selected.selectedAnswer === answer) {
+        isSelected = true;
+      }
+    }
+
     return (
       <div
         key={answer}
         dangerouslySetInnerHTML={{ __html: answer }}
-        className={classes.answer}
+        className={`${classes.answer} ${isSelected ? classes.selected : null}`}
         onClick={() => selectAnswer(props.question, answer)}
       />
     );
@@ -49,7 +57,6 @@ const Question = (props) => {
 
     let wrongStyle;
     for (let selectedAnswer of props.selectedAnswers) {
-      console.log(selectedAnswer.correct);
       if (selectedAnswer.selectedAnswer === answer && !selectedAnswer.correct) {
         wrongStyle = classes.wrong;
       }
